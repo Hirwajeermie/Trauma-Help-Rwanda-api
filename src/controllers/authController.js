@@ -2,7 +2,7 @@
 
 import User from '../models/user';
 import * as userService from '../services/authSevice';
-import setTokenCookie from '../utils/setTokenCookie';
+
 
 export const register = async (req, res) => {
   const { username, email, password, isAdmin } = req.body;
@@ -23,9 +23,10 @@ export const loginController = async (req, res) => {
     const { username, password } = req.body;
     const { user, token } = await userService.loginUser(username, password);
 
-    setTokenCookie(res, token); 
-
-    res.status(200).send({
+      res.status(200).cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', 
+      }).send({
       success: true,
       message: "Login Successfully",
       token,

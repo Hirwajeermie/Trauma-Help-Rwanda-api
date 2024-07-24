@@ -16,7 +16,7 @@ app.use('/uploads', express.static('uploads'));
 
 app.use(`${api}/auth`, authRoutes);
 app.use(`${api}/files`, fileRoutes);
-app.use(cookieParser())
+app.use(cookieParser());
 
 mongoose
   .connect(process.env.MONGO_URI, {

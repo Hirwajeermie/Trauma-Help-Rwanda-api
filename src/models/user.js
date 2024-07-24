@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import JWT from 'jsonwebtoken';
 
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
@@ -20,7 +21,7 @@ userSchema.methods.comparePassword = async function (plainPassword) {
 };
 
 userSchema.methods.generateToken = function () {
-  return JWT.sign({ _id: this._id }, process.env.JWT_SECRET, {
+  return JWT.sign({ _id: this._id, isAdmin: this.isAdmin }, process.env.JWT_SECRET, {
     expiresIn: "7d",
   });
 };
