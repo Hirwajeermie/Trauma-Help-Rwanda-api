@@ -22,7 +22,7 @@ userSchema.methods.comparePassword = async function (plainPassword) {
 
 userSchema.methods.generateToken = function () {
   return JWT.sign({ _id: this._id, isAdmin: this.isAdmin }, process.env.JWT_SECRET, {
-    expiresIn: "7d",
+    expiresIn: "1d",
   });
 };
 
