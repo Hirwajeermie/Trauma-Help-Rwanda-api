@@ -1,7 +1,7 @@
 
 
-import User from '../models/user';
-import * as userService from '../services/authSevice';
+import User from '../models/user.js';
+import * as userService from '../services/authSevice.js';
 
 
 export const register = async (req, res) => {

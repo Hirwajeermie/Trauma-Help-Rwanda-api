@@ -1,5 +1,5 @@
 
-import User from '../models/user';
+import User from '../models/user.js';
 
 export const loginUser = async (username, password) => {
     if (!username || !password) {

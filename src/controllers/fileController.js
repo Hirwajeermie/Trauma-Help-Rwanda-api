@@ -1,4 +1,4 @@
-import File from "../models/document";
+import File from "../models/document.js";
 import path from "path";
 import fs from "fs";
 

@@ -4,8 +4,8 @@ import cors from 'cors'
 
 import 'dotenv/config'
 
-import authRoutes from './src/routers/authRoutes';
-import fileRoutes from './src/routers/fileRoutes';
+import authRoutes from './src/routers/authRoutes.js';
+import fileRoutes from './src/routers/fileRoutes.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();

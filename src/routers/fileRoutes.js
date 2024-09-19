@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { isAdmin, isAuth } from '../middlewares/autho';
-import { deleteFile, getFileContent, getFiles, uploadFile } from '../controllers/fileController';
-import upload from '../middlewares/uploadFile';
+import { isAdmin, isAuth } from '../middlewares/autho.js';
+import { deleteFile, getFileContent, getFiles, uploadFile } from '../controllers/fileController.js';
+import upload from '../middlewares/uploadFile.js';
 
 const fileRoutes = Router();
 
