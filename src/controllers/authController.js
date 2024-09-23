@@ -22,11 +22,7 @@ export const loginController = async (req, res) => {
   try {
     const { username, password } = req.body;
     const { user, token } = await userService.loginUser(username, password);
-
-      res.status(200).cookie('token', token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', 
-      }).send({
+    res.status(200).send({
       success: true,
       message: "Login Successfully",
       token,

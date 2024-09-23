@@ -1,15 +1,15 @@
 import multer from "multer";
-import path from "path";
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../../uploads'));
+const storage = multer.memoryStorage();
+
+export const singleUpload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    const allowedTypes =
+      /jpeg|jpg|png|pdf|doc|docx|xls|xlsx|application\/vnd.openxmlformats-officedocument.wordprocessingml.document|application\/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application\/pdf/;
+
+    const isValid = allowedTypes.test(file.mimetype);
+    const error = isValid ? null : new Error("Invalid file type");
+    cb(error, isValid);
   },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname); // Save file with its original name
-  }
-});
-
-const upload = multer({ storage });
-
-export default upload;
+}).single("file");
