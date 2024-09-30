@@ -9,7 +9,11 @@ import fileRoutes from "./src/routers/fileRoutes.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
-app.use(express.json());
+
+
+app.use(express.json({ limit: "100mb" }));
+app.use(express.urlencoded({ limit: "100mb", extended: true }));
+
 app.use(cors());
 app.use(morgan("dev"));
 
@@ -26,13 +30,12 @@ cloudinary.v2.config({
 });
 
 app.use((req, res, next) => {
-  res.setTimeout(300000, () => { // Set timeout to 5 minutes
+  res.setTimeout(300000, () => {
     console.error('Request has timed out.');
     res.status(408).send('Request timed out.');
   });
   next();
 });
-
 
 app.use("/", (req, res) => {
   res.send("server is running");
@@ -50,3 +53,5 @@ mongoose
     )
   )
   .catch((err) => console.error(err));
+
+  
